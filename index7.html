@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jq/jquery-3.3.1.min.js"></script>
+    <title>scroll</title>
+    <style>
+        *{
+            margin: 0;padding: 0;box-sizing: border-box;
+        }
+        main{
+            width: 100%;
+            height: auto;
+            overflow-x: hidden;
+        }
+        span{
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.564);
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            z-index: 9;
+        }
+        header{
+            width: 100%;
+            height: 100px;
+            background-color: rgb(16, 0, 86);
+            transition: 1s;
+        }
+        section{
+            width: 50%;
+            height: 300px;
+            background-color: blue;
+            float: left;
+            margin: 200px 25%;
+            clear: both;
+            transition: 2s;
+        }
+        section:nth-of-type(1){
+            margin-left: -1000px;
+            background: url("img/1.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+        section:nth-of-type(2){
+            opacity: 0;
+            background: url("img/2.jpg");
+            background-position: center;
+            background-size: cover;
+        }
+        .menu-hight{
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <span></span>
+        <header></header>
+        <section></section>
+        <section></section>
+    </main>
+
+    <script>
+        $(function(){
+            $(document).scroll(function(){
+                var x = $(this).scrollTop();
+                $("span").text(x);
+                if(x>70){
+                    $("header").addClass("menu-hight");
+                    $("section:nth-of-type(1)").css("margin-left", "25%");
+                }if(x>500){
+                    $("section:nth-of-type(2)").css("opacity", "1");
+                }
+            });
+        });
+
+    </script>
+
+</body>
+</html>
